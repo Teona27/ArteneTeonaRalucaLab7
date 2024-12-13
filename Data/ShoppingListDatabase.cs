@@ -17,6 +17,8 @@ namespace ArteneTeonaRalucaLab7.Data
             _database.CreateTableAsync<ShopList>().Wait();
             _database.CreateTableAsync<Product>().Wait();
             _database.CreateTableAsync<ListProduct>().Wait();
+            _database.CreateTableAsync<Shop>().Wait();
+
         }
         public Task<List<ShopList>> GetShopListsAsync()
         {
@@ -43,7 +45,7 @@ namespace ArteneTeonaRalucaLab7.Data
         {
             return _database.DeleteAsync(slist);
         }
-        public Task<int> SaveProductAsync(Product product) 
+        public Task<int> SaveProductAsync(Product product)
         {
             if (product.ID != 0)
             {
@@ -81,13 +83,27 @@ namespace ArteneTeonaRalucaLab7.Data
             + " on P.ID = LP.ProductID where LP.ShopListID = ?",
             shoplistid);
         }
-        public Task<ListProduct> GetListProductByProductIdAsync(int productId)
+        public Task<List<Shop>> GetShopsAsync()
         {
-            return _database.Table<ListProduct>().Where(lp => lp.ProductID == productId).FirstOrDefaultAsync();
+            return _database.Table<Shop>().ToListAsync();
         }
-        public Task<int> DeleteListProductAsync(ListProduct listProduct)
+
+        public Task<int> SaveShopAsync(Shop shop)
         {
-            return _database.DeleteAsync(listProduct);
+            if (shop.ID != 0)
+            {
+                return _database.UpdateAsync(shop);
+            }
+            else
+            {
+                return _database.InsertAsync(shop);
+            }
+        }
+
+        public Task DeleteShopAsync(Shop shop)
+        {
+            return _database.DeleteAsync(shop);
+
         }
 
     }

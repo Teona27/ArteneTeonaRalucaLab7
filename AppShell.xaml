@@ -5,17 +5,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ArteneTeonaRalucaLab7"
     Shell.FlyoutBehavior="Disabled">
-
+  
     <TabBar>
         <ShellContent
-            Title="Welcome"
-            ContentTemplate="{DataTemplate local:MainPage}" />
+        Title="Welcome"
+        ContentTemplate="{DataTemplate local:MainPage}" />
+
         <ShellContent
-            Title="About"
-            ContentTemplate="{DataTemplate local:AboutPage}" />
+        Title="My Shopping Lists"
+        ContentTemplate="{DataTemplate local:ListEntryPage}" />
+
         <ShellContent
-            Title="My Shopping Lists"
-            ContentTemplate="{DataTemplate local:ListEntryPage}" />
+        Title="My Shops"
+        ContentTemplate="{DataTemplate local:ShopEntryPage}" />
+
+        <ShellContent
+        Title="About"
+        ContentTemplate="{DataTemplate local:AboutPage}" />
     </TabBar>
 
 </Shell>
